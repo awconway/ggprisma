@@ -1,9 +1,10 @@
 #' Returns ggplot prisma diagram agreement
 #' 
 #'  @name ggprisma
+#'  
 #' @param retrieved number of search results from databases
 #' @param duplicates number of duplicates removed
-#' @param fulltext number of full text articles screened
+#' @param full_text number of full text articles screened
 #' @param included number of articles included
 #' @param wrong_intervention number of articles excluded due to intervention
 #' @param wrong_design number of articles excluded due to researcg design
@@ -23,9 +24,9 @@ ggprisma <- function(retrieved, duplicates, included, full_text,
          arrow_colour = "#ff4f14"){
 
 # Based on user input
-  screened = retrieved-duplicates
-  screen_excluded = screened-full_text
-  full_text_excluded = full_text-included
+  screened = {{ retrieved }}-{{ duplicates }} 
+  screen_excluded = screened-{{ full_text }} 
+  full_text_excluded = {{ full_text }} -{{ included }} 
   
 
 # Main flow y coordinates  
@@ -75,7 +76,7 @@ data %>%
 ggplot2::annotation_custom(grob = grid::roundrectGrob(gp = grid::gpar(col = box_colour, fill = box_fill)),
                   xmin = main_x_min, xmax=main_x_max, ymin=import_y_min, ymax=import_y_max)+
   ggfittext::geom_fit_text(xmin = main_x_min, xmax=main_x_max, ymin=import_y_min, ymax=100,
-                label= glue::glue(retrieved, ' references identified'), 
+                label= glue::glue({{ retrieved }} , ' references identified'), 
                 reflow = TRUE, colour = text_colour) +
   
   # screen box
@@ -92,7 +93,7 @@ ggplot2::annotation_custom(grob = grid::roundrectGrob(gp = grid::gpar(col = box_
                                                  grid::gpar(col = box_colour, fill = box_fill)),
                     xmin = main_x_min, xmax=main_x_max, ymin=full_y_min, ymax=full_y_max) +
   ggfittext::geom_fit_text( xmin = main_x_min, xmax=main_x_max, ymin=full_y_min, ymax=full_y_max,
-                 label= glue::glue(full_text, ' full-text articles assessed'), 
+                 label= glue::glue({{ full_text }} , ' full-text articles assessed'), 
                  reflow = TRUE, colour = text_colour) +
   
   # included box 
@@ -102,7 +103,7 @@ ggplot2::annotation_custom(grob = grid::roundrectGrob(gp = grid::gpar(col = box_
                     ymin=included_y_min, ymax=included_y_max) +
   ggfittext::geom_fit_text(xmin = main_x_min, xmax=main_x_max, 
                 ymin=included_y_min, ymax=included_y_max,
-                label= glue::glue(included, ' studies included'), 
+                label= glue::glue({{ included }} , ' studies included'), 
                 reflow = TRUE, colour = text_colour) +
   
   ######### Secondary flow boxes ############
@@ -114,7 +115,7 @@ ggplot2::annotation_custom(grob = grid::roundrectGrob(gp =
                   ymin=duplicates_y_min, ymax=duplicates_y_max) +
   ggfittext::geom_fit_text(xmin = second_x_min, xmax=second_x_max, 
                 ymin=duplicates_y_min, ymax=duplicates_y_max,
-                label= glue::glue(duplicates, ' duplicates removed'),
+                label= glue::glue({{ duplicates }} , ' duplicates removed'),
                 reflow = TRUE, colour = text_colour) +
   
   
@@ -137,7 +138,7 @@ ggplot2::annotation_custom(grob = grid::roundrectGrob(gp =
                     ymin=awaiting_classification_y_min, ymax=awaiting_classification_y_max) +
   ggfittext::geom_fit_text(xmin = second_x_min, xmax=second_x_max, 
                 ymin=awaiting_classification_y_min, ymax=awaiting_classification_y_max,
-                label= glue::glue(awaiting_classification, ' studies awaiting classification'),
+                label= glue::glue({{ awaiting_classification}} , ' studies awaiting classification'),
                 reflow = TRUE, colour = text_colour) +
   
   # full text excluded box 
@@ -152,9 +153,9 @@ ggplot2::annotation_custom(grob = grid::roundrectGrob(gp =
                 reflow = TRUE, colour = text_colour) +
   ggfittext::geom_fit_text(xmin = second_x_min, xmax=second_x_max,
                 ymin=full_excluded_y_max-17, ymax=full_excluded_y_max-7,
-                label= glue::glue(wrong_intervention, ' wrong intervention','\n',
-                                  wrong_intervention, ' wrong comparator','\n',
-                                  wrong_intervention, ' wrong design'),
+                label= glue::glue({{ wrong_intervention }} , ' wrong intervention','\n',
+                                  {{ wrong_comparator }} , ' wrong comparator','\n',
+                                  {{ wrong_design }} , ' wrong design'),
                 colour = text_colour, grow = TRUE) +
   
   

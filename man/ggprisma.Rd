@@ -17,6 +17,8 @@ ggprisma(retrieved, duplicates, included, full_text, wrong_intervention,
 
 \item{included}{number of articles included}
 
+\item{full_text}{number of full text articles screened}
+
 \item{wrong_intervention}{number of articles excluded due to intervention}
 
 \item{wrong_comparator}{number of articles excluded due to comparator}
@@ -24,8 +26,6 @@ ggprisma(retrieved, duplicates, included, full_text, wrong_intervention,
 \item{wrong_design}{number of articles excluded due to researcg design}
 
 \item{awaiting_classification}{number of citations awaiting classification}
-
-\item{fulltext}{number of full text articles screened}
 }
 \description{
 @name ggprisma
