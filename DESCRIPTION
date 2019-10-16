@@ -1,0 +1,15 @@
+Package: ggprisma
+Title: PRISMA Diagrams for Systematic Reviews
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Aaron",
+           family = "Conway",
+           role = c("aut", "cre"),
+           email = "aaron.conway@utoronto.ca",
+           comment = c(ORCID = "0000-0002-9583-8636"))
+Description: Creates a ggplot with components for PRISMA flow diagrams
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.1.1
