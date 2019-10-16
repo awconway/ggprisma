@@ -8,13 +8,14 @@
 #' @param wrong_intervention number of articles excluded due to intervention
 #' @param wrong_design number of articles excluded due to researcg design
 #' @param wrong_comparator number of articles excluded due to comparator
+#' @param awaiting_classification number of citations awaiting classification
 
 #' @rdname ggprisma
 
 #' @export
 
 
-ggprisma <- function(retrieved, duplicates, included, fulltext,
+ggprisma <- function(retrieved, duplicates, included, full_text,
                      wrong_intervention, wrong_comparator, wrong_design, 
                      awaiting_classification,
          line_size = 0.50, box_type = "round", box_lines = 0.5, 

@@ -4,7 +4,7 @@
 \alias{ggprisma}
 \title{Returns ggplot prisma diagram agreement}
 \usage{
-ggprisma(retrieved, duplicates, included, fulltext, wrong_intervention,
+ggprisma(retrieved, duplicates, included, full_text, wrong_intervention,
   wrong_comparator, wrong_design, awaiting_classification,
   line_size = 0.5, box_type = "round", box_lines = 0.5,
   box_colour = "#ff4f14", box_fill = "white",
@@ -17,13 +17,15 @@ ggprisma(retrieved, duplicates, included, fulltext, wrong_intervention,
 
 \item{included}{number of articles included}
 
-\item{fulltext}{number of full text articles screened}
-
 \item{wrong_intervention}{number of articles excluded due to intervention}
 
 \item{wrong_comparator}{number of articles excluded due to comparator}
 
 \item{wrong_design}{number of articles excluded due to researcg design}
+
+\item{awaiting_classification}{number of citations awaiting classification}
+
+\item{fulltext}{number of full text articles screened}
 }
 \description{
 @name ggprisma
