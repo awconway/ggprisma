@@ -25,7 +25,7 @@ ggprisma <- function(retrieved, duplicates, included, full_text,
 
 # Based on user input
   screened = {{ retrieved }}-{{ duplicates }} 
-  screen_excluded = screened-{{ full_text }} 
+  screen_excluded = screened-{{ full_text }} - {{ awaiting_classification }}
   full_text_excluded = {{ full_text }} -{{ included }} 
   
 
