@@ -1,5 +1,5 @@
 Package: ggprisma
-Title: PRISMA Diagrams for Systematic Reviews
+Title: What the Package Does (One Line, Title Case)
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Aaron",
@@ -7,11 +7,14 @@ Authors@R:
            role = c("aut", "cre"),
            email = "aaron.conway@utoronto.ca",
            comment = c(ORCID = "0000-0002-9583-8636"))
-Description: Creates a ggplot with components for PRISMA flow diagrams
+Description: What the package does (one paragraph).
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-Roxygen: list(markdown = TRUE)
 RoxygenNote: 6.1.1
 Imports: 
-    magrittr
+    magrittr,
+    glue,
+    ggplot2,
+    tibble,
+    ggfittext
