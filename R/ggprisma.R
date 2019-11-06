@@ -151,7 +151,7 @@ ggplot2::annotation_custom(grob = grid::roundrectGrob(gp =
                 label= glue::glue({{ wrong_intervention }} , ' wrong intervention','\n',
                                   {{ wrong_comparator }} , ' wrong comparator','\n',
                                   {{ wrong_design }} , ' wrong design'),
-                colour = text_colour, grow = TRUE, data = data.frame()) +
+                colour = text_colour, data = data.frame()) +
   
   
   ####### Main flow arrows#######
