@@ -157,21 +157,21 @@ ggplot2::annotation_custom(grob = grid::roundrectGrob(gp =
   ####### Main flow arrows#######
 
 # Import - screen
-ggplot2::geom_segment(
-  x=arrow_x, xend = arrow_x, y = import_y_min, yend = screen_y_max+0.25, 
+ggplot2::geom_segment(ggplot2::aes(
+  x=arrow_x, xend = arrow_x, y = import_y_min, yend = screen_y_max+0.25), 
   size = line_size,  colour = arrow_colour,
   arrow = ggplot2::arrow(length = ggplot2::unit(2, "mm"), type= "closed")) +
   
   # Screen - full text
-  ggplot2::geom_segment(
-    x=arrow_x, xend=arrow_x, y=screen_y_min, yend=full_y_max+0.25, 
+  ggplot2::geom_segment(ggplot2::aes(
+    x=arrow_x, xend=arrow_x, y=screen_y_min, yend=full_y_max+0.25), 
     size = line_size,  colour = arrow_colour,
     arrow = ggplot2::arrow(length = ggplot2::unit(2, "mm"), type= "closed")) +
   
   # Full text - included
   
-  ggplot2::geom_segment(
-    x=arrow_x, xend=arrow_x, y=full_y_min, yend=included_y_max+0.25, 
+  ggplot2::geom_segment(ggplot2::aes(
+    x=arrow_x, xend=arrow_x, y=full_y_min, yend=included_y_max+0.25), 
     size = line_size,  colour = arrow_colour,
     arrow = ggplot2::arrow(length = ggplot2::unit(2, "mm"), type= "closed")) +
   
@@ -179,30 +179,30 @@ ggplot2::geom_segment(
 
 # Import - duplicates  
 
-ggplot2::geom_curve(
+ggplot2::geom_curve(ggplot2::aes(
   x = arrow_x, xend = second_x_min, 
-  y = duplicates_y_max,  yend = duplicates_y_max-5, linetype = "dashed",
+  y = duplicates_y_max,  yend = duplicates_y_max-5), linetype = "dashed",
   curvature = 0.1, colour = arrow_colour) +
   
   # Screen - excluded  
   
-  ggplot2::geom_curve(
+  ggplot2::geom_curve(ggplot2::aes(
     x = arrow_x, xend = second_x_min, 
-    y = screen_y_min,  yend = screen_excluded_y_max-5, linetype = "dashed",
+    y = screen_y_min,  yend = screen_excluded_y_max-5), linetype = "dashed",
     curvature = 0.1, colour = arrow_colour) +
   
   # Screen - awaiting  
   
-  ggplot2::geom_curve(
+  ggplot2::geom_curve(ggplot2::aes(
     x = arrow_x, xend = second_x_min, 
-    y = screen_y_min,  yend = awaiting_classification_y_max-4, linetype = "dashed",
+    y = screen_y_min,  yend = awaiting_classification_y_max-4), linetype = "dashed",
     curvature = -0.15, colour = arrow_colour) +
   
   # Full text - excluded  
   
-  ggplot2::geom_curve(
+  ggplot2::geom_curve(ggplot2::aes(
     x = arrow_x, xend = second_x_min, 
-    y = full_y_min, yend = full_excluded_y_max-8, linetype = "dashed",
+    y = full_y_min, yend = full_excluded_y_max-8), linetype = "dashed",
     curvature = -0.15, colour = arrow_colour) +
   
   ggplot2::theme_void()
