@@ -62,49 +62,44 @@ second_x_max <- 95
 arrow_x <- 45
 
 ###Plot space set-up####
-data <- tibble::tibble(x= 23:100, y = 23:100)
-data %>% 
-  ggplot2::ggplot(ggplot2::aes(x, y)) +
-  ggplot2::theme_linedraw() +
-  
-  
-  
+ggplot2::ggplot(data=NULL, ggplot2::aes()) +
+
   ########## Main box flow ###########
 
 # import box
 
 ggplot2::annotation_custom(grob = grid::roundrectGrob(gp = grid::gpar(col = box_colour, fill = box_fill)),
                   xmin = main_x_min, xmax=main_x_max, ymin=import_y_min, ymax=import_y_max)+
-  ggfittext::geom_fit_text(xmin = main_x_min, xmax=main_x_max, ymin=import_y_min, ymax=100,
+  ggfittext::geom_fit_text(aes(xmin = main_x_min, xmax=main_x_max, ymin=import_y_min, ymax=100),
                 label= glue::glue({{ retrieved }} , ' references identified'), 
-                reflow = TRUE, colour = text_colour) +
+                reflow = TRUE, colour = text_colour, data = data.frame()) +
   
   # screen box
   ggplot2::annotation_custom(grob = grid::roundrectGrob(gp = 
                                                  grid::gpar(col = box_colour, fill = box_fill)),
                     xmin = main_x_min, xmax=main_x_max, ymin=screen_y_min, 
                     ymax=screen_y_max) +
-  ggfittext::geom_fit_text(xmin = main_x_min, xmax=main_x_max, ymin=screen_y_min, ymax=screen_y_max,
+  ggfittext::geom_fit_text(aes(xmin = main_x_min, xmax=main_x_max, ymin=screen_y_min, ymax=screen_y_max),
                 label= glue::glue(screened, ' titles and abstracts screened'), 
-                reflow = TRUE, colour = text_colour) +
+                reflow = TRUE, colour = text_colour, data = data.frame()) +
   
   # full text box
   ggplot2::annotation_custom(grob = grid::roundrectGrob(gp = 
                                                  grid::gpar(col = box_colour, fill = box_fill)),
                     xmin = main_x_min, xmax=main_x_max, ymin=full_y_min, ymax=full_y_max) +
-  ggfittext::geom_fit_text( xmin = main_x_min, xmax=main_x_max, ymin=full_y_min, ymax=full_y_max,
+  ggfittext::geom_fit_text(aes( xmin = main_x_min, xmax=main_x_max, ymin=full_y_min, ymax=full_y_max),
                  label= glue::glue({{ full_text }} , ' full-text articles assessed'), 
-                 reflow = TRUE, colour = text_colour) +
+                 reflow = TRUE, colour = text_colour, data = data.frame()) +
   
   # included box 
   ggplot2::annotation_custom(grob = grid::roundrectGrob(gp = 
                                                  grid::gpar(col = box_colour, fill = box_fill)),
                     xmin = main_x_min, xmax=main_x_max, 
                     ymin=included_y_min, ymax=included_y_max) +
-  ggfittext::geom_fit_text(xmin = main_x_min, xmax=main_x_max, 
-                ymin=included_y_min, ymax=included_y_max,
+  ggfittext::geom_fit_text(aes(xmin = main_x_min, xmax=main_x_max, 
+                ymin=included_y_min, ymax=included_y_max),
                 label= glue::glue({{ included }} , ' studies included'), 
-                reflow = TRUE, colour = text_colour) +
+                reflow = TRUE, colour = text_colour, data = data.frame()) +
   
   ######### Secondary flow boxes ############
 
@@ -113,10 +108,10 @@ ggplot2::annotation_custom(grob = grid::roundrectGrob(gp =
                                                grid::gpar(col = box_colour, fill = box_fill)),
                   xmin = second_x_min, xmax=second_x_max, 
                   ymin=duplicates_y_min, ymax=duplicates_y_max) +
-  ggfittext::geom_fit_text(xmin = second_x_min, xmax=second_x_max, 
-                ymin=duplicates_y_min, ymax=duplicates_y_max,
+  ggfittext::geom_fit_text(aes(xmin = second_x_min, xmax=second_x_max, 
+                ymin=duplicates_y_min, ymax=duplicates_y_max),
                 label= glue::glue({{ duplicates }} , ' duplicates removed'),
-                reflow = TRUE, colour = text_colour) +
+                reflow = TRUE, colour = text_colour, data = data.frame()) +
   
   
   # excluded box 
@@ -125,10 +120,10 @@ ggplot2::annotation_custom(grob = grid::roundrectGrob(gp =
                                             grid::gpar(col = box_colour, fill = box_fill)),
                     xmin = second_x_min, xmax=second_x_max, 
                     ymin=screen_excluded_y_min, ymax=screen_excluded_y_max) +
-  ggfittext::geom_fit_text(xmin = second_x_min, xmax=second_x_max, 
-                ymin=screen_excluded_y_min, ymax=screen_excluded_y_max,
+  ggfittext::geom_fit_text(aes(xmin = second_x_min, xmax=second_x_max, 
+                ymin=screen_excluded_y_min, ymax=screen_excluded_y_max),
                 label= glue::glue(screen_excluded, ' studies excluded'),
-                reflow = TRUE, colour = text_colour) +
+                reflow = TRUE, colour = text_colour, data = data.frame()) +
   
   # awaiting classifications box 
   ggplot2::annotation_custom(grob = 
@@ -136,10 +131,10 @@ ggplot2::annotation_custom(grob = grid::roundrectGrob(gp =
                                             grid::gpar(col = box_colour, fill = box_fill)),
                     xmin = second_x_min, xmax=second_x_max, 
                     ymin=awaiting_classification_y_min, ymax=awaiting_classification_y_max) +
-  ggfittext::geom_fit_text(xmin = second_x_min, xmax=second_x_max, 
-                ymin=awaiting_classification_y_min, ymax=awaiting_classification_y_max,
+  ggfittext::geom_fit_text(aes(xmin = second_x_min, xmax=second_x_max, 
+                ymin=awaiting_classification_y_min, ymax=awaiting_classification_y_max),
                 label= glue::glue({{ awaiting_classification}} , ' studies awaiting classification'),
-                reflow = TRUE, colour = text_colour) +
+                reflow = TRUE, colour = text_colour, data = data.frame()) +
   
   # full text excluded box 
   ggplot2::annotation_custom(grob = 
@@ -147,16 +142,16 @@ ggplot2::annotation_custom(grob = grid::roundrectGrob(gp =
                                             grid::gpar(col = box_colour, fill = box_fill)),
                     xmin = second_x_min, xmax=second_x_max, 
                     ymin=full_excluded_y_min, ymax=full_excluded_y_max) +
-  ggfittext::geom_fit_text(xmin = second_x_min, xmax=second_x_max,
-                ymin=full_excluded_y_max-7, ymax=full_excluded_y_max,
+  ggfittext::geom_fit_text(aes(xmin = second_x_min, xmax=second_x_max,
+                ymin=full_excluded_y_max-7, ymax=full_excluded_y_max),
                 label= glue::glue(full_text_excluded, ' studies excluded'),
-                reflow = TRUE, colour = text_colour) +
-  ggfittext::geom_fit_text(xmin = second_x_min, xmax=second_x_max,
-                ymin=full_excluded_y_max-17, ymax=full_excluded_y_max-7,
+                reflow = TRUE, colour = text_colour, data = data.frame()) +
+  ggfittext::geom_fit_text(aes(xmin = second_x_min, xmax=second_x_max,
+                ymin=full_excluded_y_max-17, ymax=full_excluded_y_max-7),
                 label= glue::glue({{ wrong_intervention }} , ' wrong intervention','\n',
                                   {{ wrong_comparator }} , ' wrong comparator','\n',
                                   {{ wrong_design }} , ' wrong design'),
-                colour = text_colour, grow = TRUE) +
+                colour = text_colour, grow = TRUE, data = data.frame()) +
   
   
   ####### Main flow arrows#######
@@ -210,7 +205,6 @@ ggplot2::geom_curve(
     y = full_y_min, yend = full_excluded_y_max-8, linetype = "dashed",
     curvature = -0.15, colour = arrow_colour) +
   
-  ggplot2::theme_void() +
-  ggplot2::coord_cartesian(ylim = c(23,100))
+  ggplot2::theme_void()
 
 }
